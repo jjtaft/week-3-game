@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Trumps Word Vomit Hangman</title>
+
+
+</head>
+<body>
+<div class="header">
+<img src="assets/images/trumpy.jpg" id="trumpy">
+<h1>Trumps Word Vomit Hangman</h1>
+<h2>Press any key to begin</h2>
+</div>
+
+<div id="score"></div>
+
+<div id="currentword"></div>
+
+<div id="countdown"></div>
+
+<div id="used-letters">
+<p>Letters Already Guessed:</p>
+<div id="guesses"></div>
+</div>
+
+<script language="javascript" type="text/javascript">
+
+var words = ['bigly', 'yuge', 'winning', 'weak', 'loser', 'lightweight', 'amazing', 'putin', 'zero', 'gina', 'tremendous', 'terrific', 'wall'];
+
+var guess;
+var guesses = [];
+
+var wins = 0;
+
+var computerGuess = words[Math.floor(Math.random() * words.length)];
+	wordCurrentWord = computerGuess.replace(/a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z/gi, " _ ");
+	document.querySelector("#currentword").innerHTML = "<p>Current Word: </p>" + wordCurrentWord;
+
+var remaining = (computerGuess.length + 5);
+
+addEventListener("keypress", function(event) {
+      var guess = String.fromCharCode(event.charCode);
+      if (guesses.indexOf(guess) == -1) {
+        guesses.push(guess);
+
+      document.querySelector("#score").innerhtml = "Wins: " + wins;
+
+      } else {
+
+      document.querySelector("#score").innerhtml = "You've already guessed that letter!";
+      }
+
+
+for (var i = 0; i < guesses.length; i++) {
+        for (var j = 0; j < computerGuess.length; j++) {
+          if (computerGuess[j] == guesses[i]) {
+            wordCurrentWord = wordCurrentWord.substr(0, j) + guesses[i] + wordCurrentWord.substr(j + 1);
+            wordCurrentWord = wordCurrentWord.toUpperCase();
+          }
+        }
+    }
+ document.getElementById("guesses").innerHTML = guesses;
+
+});
+ 
+document.querySelector("#currentword").innerhtml = wordCurrentWord;
+
+</script>
+
+
+</body>
+</html>
