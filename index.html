@@ -36,7 +36,7 @@ var guesses = [];
 var wins = 0;
 
 var computerGuess = words[Math.floor(Math.random() * words.length)];
-	wordCurrentWord = computerGuess.replace(/a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z/gi, " _ ");
+	wordCurrentWord = computerGuess.replace(/a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z/gi, "_");
 	document.querySelector("#currentword").innerHTML = "<p>Current Word: </p>" + wordCurrentWord;
 
 var remaining = (computerGuess.length + 5);
@@ -46,27 +46,27 @@ addEventListener("keypress", function(event) {
       if (guesses.indexOf(guess) == -1) {
         guesses.push(guess);
 
-      document.querySelector("#score").innerhtml = "Wins: " + wins;
+      document.querySelector("#score").innerHTML = "Wins: " + wins;
 
       } else {
 
-      document.querySelector("#score").innerhtml = "You've already guessed that letter!";
+      document.querySelector("#score").innerHTML = "You've already guessed that letter!";
       }
 
 
-for (var i = 0; i < guesses.length; i++) {
         for (var j = 0; j < computerGuess.length; j++) {
-          if (computerGuess[j] == guesses[i]) {
-            wordCurrentWord = wordCurrentWord.substr(0, j) + guesses[i] + wordCurrentWord.substr(j + 1);
+          if (computerGuess[j] == guess) {
+            wordCurrentWord = wordCurrentWord.substr(0, j) + guess+ wordCurrentWord.substr(j + 1);
             wordCurrentWord = wordCurrentWord.toUpperCase();
           }
         }
-    }
- document.getElementById("guesses").innerHTML = guesses;
+  
+ 	document.getElementById("guesses").innerHTML = guesses;
+
+ 	document.getElementById("currentword").innerHTML = wordCurrentWord;
 
 });
  
-document.querySelector("#currentword").innerhtml = wordCurrentWord;
 
 </script>
 
